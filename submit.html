@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Submit Article - Echo Press</title>
+
+<style>
+
+body{
+  margin:0;
+  background:#ececec;
+  font-family:"Times New Roman", serif;
+  color:#2b2b2b;
+}
+
+/* WEBSITE HEADER */
+
+.site-header{
+  position:sticky;
+  top:0;
+  background:#f7f7f4;
+  border-bottom:1px solid #bdbdbd;
+  padding:18px 40px;
+  z-index:1000;
+}
+
+.header-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.logo{
+  font-size:42px;
+  font-weight:bold;
+  letter-spacing:-2px;
+}
+
+.nav{
+  display:flex;
+  gap:25px;
+}
+
+.nav a{
+  text-decoration:none;
+  color:black;
+  font-size:15px;
+  transition:opacity 0.3s ease;
+}
+
+.nav a:hover{
+  opacity:0.5;
+}
+
+/* BREAKING BAR */
+
+.breaking-bar{
+  overflow:hidden;
+  white-space:nowrap;
+  border-top:1px solid #bdbdbd;
+  margin-top:15px;
+  padding-top:10px;
+}
+
+.breaking-track{
+  display:inline-block;
+  animation:scrollText 18s linear infinite;
+  font-size:15px;
+}
+
+@keyframes scrollText{
+
+  from{
+    transform:translateX(100%);
+  }
+
+  to{
+    transform:translateX(-100%);
+  }
+
+}
+
+/* MAIN WRAP */
+
+.website-wrap{
+  width:92%;
+  max-width:1400px;
+  margin:35px auto;
+}
+
+/* NEWSPAPER PANEL */
+
+.newspaper{
+  background:#f7f7f4;
+  border:1px solid #bdbdbd;
+  padding:45px 55px;
+  box-shadow:0 0 25px rgba(0,0,0,0.06);
+}
+
+/* TITLE */
+
+.paper-title{
+  text-align:center;
+  font-size:110px;
+  margin:0;
+  letter-spacing:-5px;
+  line-height:0.9;
+}
+
+.top-line{
+  border-top:1px solid #8d8d8d;
+  margin-bottom:25px;
+}
+
+/* INFO BAR */
+
+.info-bar{
+  display:flex;
+  justify-content:space-between;
+  border-top:1px solid #8d8d8d;
+  border-bottom:1px solid #8d8d8d;
+  padding:12px 0;
+  margin-top:18px;
+  font-size:14px;
+}
+
+/* MAIN BANNER */
+
+.main-banner{
+  text-align:center;
+  font-size:36px;
+  padding:20px 0;
+  border-bottom:1px solid #8d8d8d;
+  margin-bottom:35px;
+}
+
+/* GRID */
+
+.main-grid{
+  display:grid;
+  grid-template-columns:1.2fr 1fr;
+  gap:35px;
+}
+
+/* LEFT COLUMN */
+
+.form-section{
+  border-top:1px solid #8d8d8d;
+  padding-top:25px;
+}
+
+.form-title{
+  font-size:52px;
+  line-height:0.9;
+  border:1px solid #bdbdbd;
+  width:fit-content;
+  padding:10px 12px;
+  margin-bottom:30px;
+}
+
+/* FORM */
+
+input,
+textarea{
+  width:100%;
+  box-sizing:border-box;
+  background:transparent;
+  border:none;
+  border-bottom:1px solid #8d8d8d;
+  padding:16px 0;
+  margin-bottom:28px;
+  font-family:"Times New Roman", serif;
+  font-size:18px;
+  outline:none;
+}
+
+textarea{
+  min-height:260px;
+  resize:none;
+  line-height:1.5;
+}
+
+/* BUTTON */
+
+button{
+  background:black;
+  color:white;
+  border:none;
+  padding:12px 26px;
+  font-family:"Times New Roman", serif;
+  font-size:15px;
+  cursor:pointer;
+  transition:opacity 0.3s ease;
+}
+
+button:hover{
+  opacity:0.7;
+}
+
+/* RIGHT COLUMN */
+
+.notes{
+  border-left:1px solid #c6c6c6;
+  padding-left:25px;
+}
+
+.notes h3{
+  font-size:42px;
+  line-height:0.9;
+  margin-top:0;
+  margin-bottom:25px;
+}
+
+.notes p{
+  font-size:18px;
+  line-height:1.45;
+  margin-bottom:28px;
+}
+
+/* GLITCH */
+
+.glitch-title{
+  animation:flicker 0.15s infinite;
+}
+
+@keyframes flicker{
+
+  0%{
+    opacity:1;
+  }
+
+  20%{
+    opacity:0.5;
+  }
+
+  40%{
+    opacity:1;
+  }
+
+  60%{
+    opacity:0.4;
+  }
+
+  100%{
+    opacity:1;
+  }
+
+}
+
+/* FOOTER */
+
+.site-footer{
+  margin-top:45px;
+  border-top:1px solid #8d8d8d;
+  padding-top:25px;
+  text-align:center;
+}
+
+.footer-text{
+  font-size:18px;
+  font-style:italic;
+  opacity:0.7;
+}
+
+.footer-nav{
+  margin-top:20px;
+  display:flex;
+  justify-content:center;
+  gap:30px;
+}
+
+.footer-nav a{
+  text-decoration:none;
+  color:black;
+  font-size:14px;
+}
+
+/* GLITCH INPUT */
+
+.glitch-input{
+  position:relative;
+}
+
+.glitch-input::after{
+  content:"signal unstable";
+  position:absolute;
+  right:0;
+  top:-10px;
+  font-size:11px;
+  opacity:0;
+  transition:opacity 0.3s ease;
+}
+
+.glitch-input:hover::after{
+  opacity:0.5;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:1000px){
+
+  .paper-title{
+    font-size:70px;
+  }
+
+  .main-grid{
+    grid-template-columns:1fr;
+  }
+
+  .notes{
+    border-left:none;
+    padding-left:0;
+    border-top:1px solid #c6c6c6;
+    padding-top:30px;
+  }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- WEBSITE HEADER -->
+
+<header class="site-header">
+
+<div class="header-top">
+
+<div class="logo">
+ECHO PRESS
+</div>
+
+<nav class="nav">
+
+<a href="index.html">Home</a>
+<a href="submit.html">Submit</a>
+
+</nav>
+
+</div>
+
+<div class="breaking-bar">
+
+<div class="breaking-track">
+
+SUBMISSIONS MAY SHIFT DURING PROCESSING — MULTIPLE ARTICLE VERSIONS MAY EXIST SIMULTANEOUSLY — INFORMATION MAY CHANGE WITHOUT NOTICE — SIGNAL UNSTABLE —
+
+</div>
+
+</div>
+
+</header>
+
+<!-- WEBSITE WRAP -->
+
+<div class="website-wrap">
+
+<div class="newspaper">
+
+<div class="top-line"></div>
+
+<h1 class="paper-title">
+ECHO PRESS
+</h1>
+
+<div class="info-bar">
+
+<div>VOL. 12 7 - NO. 39</div>
+
+<div>NEW YORK, SUNdAY, APR 10, 2023</div>
+
+<div>ARCHIVE SUBMISSION PORTAL</div>
+
+</div>
+
+<div class="main-banner glitch-title">
+
+SUBMIT ARTICLE TO SYSTEM ARCHIVE
+
+</div>
+
+<div class="main-grid">
+
+<!-- LEFT -->
+
+<div class="form-section">
+
+<div class="form-title">
+SUBMIT<br>
+ARTICLE
+</div>
+
+<div class="glitch-input">
+
+<input type="text" placeholder="ARTICLE TITLE">
+
+</div>
+
+<div class="glitch-input">
+
+<input type="text" placeholder="AUTHOR">
+
+</div>
+
+<div class="glitch-input">
+
+<textarea placeholder="WRITE YOUR ARTICLE..."></textarea>
+
+</div>
+
+<button id="publishBtn">
+PUBLISH
+</button>
+
+</div>
+
+<!-- RIGHT -->
+
+<div class="notes">
+
+<h3 class="glitch-title">
+SUBMISSION NOTES
+</h3>
+
+<p class="glitch-text">
+Articles submitted to Echo Press may appear differently once published.
+</p>
+
+<p class="glitch-text">
+Formatting is subject to change without notice.
+Content may shift, repeat, or fragment across pages.
+</p>
+
+<p class="glitch-text">
+Multiple versions of the same article may exist simultaneously.
+</p>
+
+<p class="glitch-text">
+Submitted text may not reflect the original meaning after processing.
+</p>
+
+<p class="glitch-text">
+Publication does not guarantee clarity.
+</p>
+
+</div>
+
+</div>
+
+<!-- FOOTER -->
+
+<footer class="site-footer">
+
+<div class="footer-text">
+
+“Information continues to circulate in unstable forms.”
+
+</div>
+
+<div class="footer-nav">
+
+<a href="#">About</a>
+<a href="#">Contact</a>
+<a href="#">Archive</a>
+<a href="#">Terms</a>
+
+</div>
+
+</footer>
+
+</div>
+
+</div>
+
+<script>
+
+/* GLITCH TEXT */
+
+const glitchTexts = document.querySelectorAll(".glitch-text");
+
+glitchTexts.forEach(text => {
+
+  const original = text.innerText;
+
+  setInterval(() => {
+
+    if(Math.random() > 0.7){
+
+      text.innerText = original
+      .split("")
+      .map(letter => {
+
+        if(Math.random() > 0.94){
+          return "#";
+        }
+
+        return letter;
+
+      })
+      .join("");
+
+      setTimeout(() => {
+
+        text.innerText = original;
+
+      },120);
+
+    }
+
+  },1000);
+
+});
+
+/* BUTTON */
+
+const publishBtn = document.getElementById("publishBtn");
+
+publishBtn.addEventListener("mouseenter", () => {
+
+  publishBtn.innerText = "PROCESSING...";
+
+});
+
+publishBtn.addEventListener("mouseleave", () => {
+
+  publishBtn.innerText = "PUBLISH";
+
+});
+
+</script>
+
+</body>
+</html>
